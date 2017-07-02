@@ -14,6 +14,8 @@ resource "aws_instance" "jenkins-instance" {
   # user data
   user_data = "${data.template_cloudinit_config.cloudinit-jenkins.rendered}"
 
+
+
 }
 
 resource "aws_ebs_volume" "jenkins-data" {
@@ -31,3 +33,11 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   instance_id = "${aws_instance.jenkins-instance.id}"
 }
 
+data "terraform_remote_state" "jenkins" {
+  backend = "s3"
+  config {
+    name = "terraform-state-jaya123"
+    key = "terraform/terraform.tfstate"
+    region = "eu-west-1"
+  }
+}

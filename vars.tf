@@ -18,7 +18,7 @@ variable "ECS_AMIS" {
     eu-west-1 = "ami-c8337dbb"
   }
 }
-# Full List: http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html
+
 
 variable "AMIS" {
   type = "map"
