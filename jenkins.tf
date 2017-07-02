@@ -32,12 +32,6 @@ resource "aws_volume_attachment" "jenkins-data-attachment" {
   volume_id = "${aws_ebs_volume.jenkins-data.id}"
   instance_id = "${aws_instance.jenkins-instance.id}"
 }
+//#!/bin/sh
+//terraform remote config -backend=s3 -backend-config="bucket=terraform-state-jaya123" -backend-config="key=terraform/terraform.tfstate" -backend-config="region=eu-west-1"
 
-data "terraform_remote_state" "jenkins" {
-  backend = "s3"
-  config {
-    name = "terraform-state-jaya123"
-    key = "terraform/terraform.tfstate"
-    region = "eu-west-1"
-  }
-}
